@@ -11,7 +11,7 @@ extern crate embedded_hal_mock;
 
 use byteorder::{ByteOrder, BigEndian};
 use embedded_hal::blocking::delay::DelayUs;
-use embedded_hal::blocking::i2c::{Read, Write, WriteRead};
+use embedded_hal::blocking::i2c::{Write, WriteRead};
 
 static ADDRESS: u8 = 0x77;
 
@@ -24,7 +24,7 @@ pub struct BMP180<I2C, D> {
 
 impl<I2C, D, E> BMP180<I2C, D>
 where
-    I2C: Read<Error = E> + Write<Error = E> + WriteRead<Error = E>,
+    I2C: Write<Error = E> + WriteRead<Error = E>,
     D: DelayUs<u16>,
 {
 	/// Creates a new driver
@@ -91,10 +91,7 @@ where
 
     fn read_reg(&mut self, reg: u8, buf: &mut [u8]) -> Result<(), Error<E>> {
         self.i2c
-            .write(ADDRESS, &[reg])
-            .map_err(Error::I2c)?;
-        self.i2c
-            .read(ADDRESS, buf)
+            .write_read(ADDRESS, &[reg], buf)
             .map_err(Error::I2c)
     }
 
