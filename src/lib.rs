@@ -13,7 +13,7 @@ use byteorder::{ByteOrder, BigEndian};
 use embedded_hal::blocking::delay::DelayUs;
 use embedded_hal::blocking::i2c::{Read, Write, WriteRead};
 
-static ADDRESS: u8 = 0xEE;
+static ADDRESS: u8 = 0x77;
 
 pub struct BMP180<I2C, D> {
     i2c: I2C,
