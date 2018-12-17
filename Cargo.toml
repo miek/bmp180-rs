@@ -7,3 +7,6 @@ authors = ["Mike Walters <mike@flomp.net>"]
 byteorder = "*"
 embedded-hal = "*"
 embedded-hal-mock = "*"
+
+[dev_dependencies]
+linux-embedded-hal = "*"
