@@ -1,0 +1,9 @@
+[package]
+name = "bmp180"
+version = "0.1.0"
+authors = ["Mike Walters <mike@flomp.net>"]
+
+[dependencies]
+byteorder = "*"
+embedded-hal = "*"
+embedded-hal-mock = "*"
