@@ -221,25 +221,21 @@ mod tests {
 
         let expectations = [
             // Read calibration
-            I2cTransaction::write(ADDRESS, vec![0xAA]),
-            I2cTransaction::read(ADDRESS, cal),
+            I2cTransaction::write_read(ADDRESS, vec![0xAA], cal),
 
             // Start temp measurement
             I2cTransaction::write(ADDRESS, vec![0xF4, 0x2E]),
             // Read temp measurement
-            I2cTransaction::write(ADDRESS, vec![0xF6]),
-            I2cTransaction::read(ADDRESS, temp.clone()),
+            I2cTransaction::write_read(ADDRESS, vec![0xF6], temp.clone()),
 
             // Start temp measurement
             I2cTransaction::write(ADDRESS, vec![0xF4, 0x2E]),
             // Read temp measurement
-            I2cTransaction::write(ADDRESS, vec![0xF6]),
-            I2cTransaction::read(ADDRESS, temp.clone()),
+            I2cTransaction::write_read(ADDRESS, vec![0xF6], temp.clone()),
             // Start pressure measurement
             I2cTransaction::write(ADDRESS, vec![0xF4, 0x34]),
             // Read pressure measurement
-            I2cTransaction::write(ADDRESS, vec![0xF6]),
-            I2cTransaction::read(ADDRESS, pressure),
+            I2cTransaction::write_read(ADDRESS, vec![0xF6], pressure),
         ];
         let i2c = I2cMock::new(&expectations);
         let mut bmp = BMP180::new(i2c, DelayMock{}).unwrap();
