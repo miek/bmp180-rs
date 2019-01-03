@@ -7,7 +7,6 @@ extern crate std;
 
 extern crate byteorder;
 extern crate embedded_hal;
-extern crate embedded_hal_mock;
 
 use byteorder::{ByteOrder, BigEndian};
 use embedded_hal::blocking::delay::DelayUs;
@@ -194,10 +193,11 @@ impl Command {
 
 #[cfg(test)]
 mod tests {
+    extern crate embedded_hal_mock;
     use super::*;
     use byteorder::{BigEndian, WriteBytesExt};
-    use embedded_hal_mock::i2c::{Mock as I2cMock, Transaction as I2cTransaction};
-    use embedded_hal_mock::delay::MockNoop as DelayMock;
+    use tests::embedded_hal_mock::i2c::{Mock as I2cMock, Transaction as I2cTransaction};
+    use tests::embedded_hal_mock::delay::MockNoop as DelayMock;
     #[test]
     fn test_bmp180() {
         let mut cal = vec![];

@@ -4,9 +4,9 @@ version = "0.1.0"
 authors = ["Mike Walters <mike@flomp.net>"]
 
 [dependencies]
-byteorder = "*"
+byteorder = { version = "*", default-features = false }
 embedded-hal = "*"
-embedded-hal-mock = "*"
 
 [dev_dependencies]
+embedded-hal-mock = "*"
 linux-embedded-hal = "*"
